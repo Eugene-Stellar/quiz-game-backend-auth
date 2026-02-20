@@ -1,0 +1,40 @@
+#spring:
+#  datasource:
+#    url: ${DB_URL}
+#    username: ${DB_USER}
+#    password: ${DB_PASSWORD}
+#    driver-class-name: org.postgresql.Driver
+#
+#  jpa:
+#    database: postgresql
+#    show-sql: true
+#    hibernate:
+#      ddl-auto: none
+#    database-platform: org.hibernate.dialect.PostgreSQLDialect
+
+spring:
+  datasource:
+    url: ${DB_URL}
+    username: ${DB_USER}
+    password: ${DB_PASSWORD}
+    driver-class-name: org.postgresql.Driver
+    hikari:
+      maximum-pool-size: 20 # Для авторизации 20 соединений обычно достаточно
+      minimum-idle: 5
+      connection-timeout: 10000 # 10 секунд на ожидание
+      pool-name: AuthHikariPool
+
+  jpa:
+    database: postgresql
+    show-sql: false # ОБЯЗАТЕЛЬНО false для нагрузки
+    open-in-view: false # Закрываем соединение сразу после выполнения запроса
+    hibernate:
+      ddl-auto: validate
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        jdbc:
+          batch_size: 50
+          order_inserts: true
+          order_updates: true
+        format_sql: false
