@@ -36,5 +36,5 @@ build/
 /src/main/resources/application.properties
 
 ### Old Configuration ###
-src/main/java/eugenestellar/quiz/service/CustomUserDetailsService.java
-src/main/java/eugenestellar/quiz/model/CustomUserDetails.java
+src/main/java/eugenestellar/service/CustomUserDetailsService.java
+src/main/java/eugenestellar/model/CustomUserDetails.java

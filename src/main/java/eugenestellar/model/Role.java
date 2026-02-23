@@ -1,4 +1,4 @@
-package eugenestellar.quiz.model;
+package eugenestellar.model;
 
 public enum Role {
   ROLE_USER,

@@ -1,4 +1,4 @@
-package eugenestellar.quiz.exception;
+package eugenestellar.exception;
 
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 

@@ -1,4 +1,4 @@
-package eugenestellar.quiz.util;
+package eugenestellar.util;
 
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.JWTVerifier;

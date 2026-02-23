@@ -1,4 +1,4 @@
-package eugenestellar.quiz.exception;
+package eugenestellar.exception;
 
 public class NotFoundRefreshTokenException extends RuntimeException {
   public NotFoundRefreshTokenException(String message) {

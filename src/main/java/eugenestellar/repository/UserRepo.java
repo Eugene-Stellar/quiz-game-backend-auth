@@ -1,6 +1,6 @@
-package eugenestellar.quiz.repository;
+package eugenestellar.repository;
 
-import eugenestellar.quiz.model.entity.User;
+import eugenestellar.model.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;

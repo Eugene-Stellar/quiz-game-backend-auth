@@ -1,4 +1,4 @@
-package eugenestellar.quiz.exception;
+package eugenestellar.exception;
 
 public class NotFoundUserOrIncorrectPasswordException extends RuntimeException {
   public NotFoundUserOrIncorrectPasswordException(String message) {

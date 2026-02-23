@@ -1,4 +1,4 @@
-package eugenestellar.quiz.model.dto;
+package eugenestellar.model.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

@@ -1,4 +1,4 @@
-package eugenestellar.quiz.model.dto;
+package eugenestellar.model.dto;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;

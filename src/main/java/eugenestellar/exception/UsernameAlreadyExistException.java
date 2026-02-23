@@ -1,4 +1,4 @@
-package eugenestellar.quiz.exception;
+package eugenestellar.exception;
 
 public class UsernameAlreadyExistException extends RuntimeException {
   public UsernameAlreadyExistException(String message) {

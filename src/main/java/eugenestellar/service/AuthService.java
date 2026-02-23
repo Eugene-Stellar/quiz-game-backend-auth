@@ -1,14 +1,15 @@
-package eugenestellar.quiz.service;
+package eugenestellar.service;
 
 import com.auth0.jwt.exceptions.JWTVerificationException;
 import com.auth0.jwt.interfaces.DecodedJWT;
+import eugenestellar.exception.*;
 import eugenestellar.quiz.exception.*;
-import eugenestellar.quiz.model.Role;
-import eugenestellar.quiz.model.dto.AuthUserDto;
-import eugenestellar.quiz.model.dto.ResponseTokenAndInfoDto;
-import eugenestellar.quiz.model.entity.User;
-import eugenestellar.quiz.repository.UserRepo;
-import eugenestellar.quiz.util.JwtUtil;
+import eugenestellar.model.Role;
+import eugenestellar.model.dto.AuthUserDto;
+import eugenestellar.model.dto.ResponseTokenAndInfoDto;
+import eugenestellar.model.entity.User;
+import eugenestellar.repository.UserRepo;
+import eugenestellar.util.JwtUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;

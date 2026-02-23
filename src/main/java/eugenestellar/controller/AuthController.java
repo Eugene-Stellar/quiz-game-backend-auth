@@ -1,9 +1,9 @@
-package eugenestellar.quiz.controller;
+package eugenestellar.controller;
 
-import eugenestellar.quiz.exception.NotFoundRefreshTokenException;
-import eugenestellar.quiz.model.dto.AuthUserDto;
-import eugenestellar.quiz.model.dto.ResponseTokenAndInfoDto;
-import eugenestellar.quiz.service.AuthService;
+import eugenestellar.exception.NotFoundRefreshTokenException;
+import eugenestellar.model.dto.AuthUserDto;
+import eugenestellar.model.dto.ResponseTokenAndInfoDto;
+import eugenestellar.service.AuthService;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseCookie;

@@ -1,4 +1,4 @@
-package eugenestellar.quiz.exception;
+package eugenestellar.exception;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

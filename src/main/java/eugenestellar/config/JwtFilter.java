@@ -1,9 +1,9 @@
-package eugenestellar.quiz.config;
+package eugenestellar.config;
 
 import com.auth0.jwt.exceptions.JWTVerificationException;
 import com.auth0.jwt.interfaces.DecodedJWT;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import eugenestellar.quiz.util.JwtUtil;
+import eugenestellar.util.JwtUtil;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;

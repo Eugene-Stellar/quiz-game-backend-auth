@@ -1,4 +1,4 @@
-package eugenestellar.quiz.model.entity;
+package eugenestellar.model.entity;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;

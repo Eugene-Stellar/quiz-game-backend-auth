@@ -1,4 +1,4 @@
-package eugenestellar.quiz.exception;
+package eugenestellar.exception;
 
 public class ExpiredRefreshTokenException extends RuntimeException {
   public ExpiredRefreshTokenException(String message) {
