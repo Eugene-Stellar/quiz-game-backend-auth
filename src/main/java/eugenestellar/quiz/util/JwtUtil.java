@@ -15,8 +15,11 @@ import java.util.List;
 @Component
 public class JwtUtil {
 
-  @Value("${SECRET_WORD}")
-  private String secret;
+  private final String secret;
+
+  public JwtUtil(@Value("${SECRET_WORD}") String secret) {
+    this.secret = secret;
+  }
 
   public String generateToken(Long userId, String username, boolean accessToken, List<String> roles) {
     Date expirationDate = accessToken ? Date.from(ZonedDateTime.now().plusMinutes(15).toInstant())
