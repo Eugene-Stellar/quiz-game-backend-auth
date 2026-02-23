@@ -15,8 +15,8 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseCookie;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-import org.springframework.web.reactive.function.client.WebClient;
-import org.springframework.web.reactive.function.client.WebClientResponseException;
+import org.springframework.web.client.RestClient;
+import org.springframework.web.client.RestClientResponseException;
 
 import java.time.Duration;
 import java.util.List;
@@ -30,16 +30,15 @@ public class AuthService {
   private final UserRepo userRepo;
   private final PasswordEncoder passwordEncoder;
   private final JwtUtil jwtUtil;
-  private final WebClient webClient;
-
+  private final RestClient restClient;
   private final String gameServiceUrl;
 
-  public AuthService(JwtUtil jwtUtil, UserRepo userRepo, PasswordEncoder passwordEncoder, WebClient webClient, @Value("${GAME_SERVICE_URL}") String gameServiceUrl) {
-    this.jwtUtil = jwtUtil;
+  public AuthService(UserRepo userRepo, PasswordEncoder passwordEncoder, JwtUtil jwtUtil, RestClient restClient, @Value("${GAME_SERVICE_URL}") String gameServiceUrl) {
+    this.gameServiceUrl = gameServiceUrl;
     this.userRepo = userRepo;
     this.passwordEncoder = passwordEncoder;
-    this.webClient = webClient;
-    this.gameServiceUrl = gameServiceUrl;
+    this.jwtUtil = jwtUtil;
+    this.restClient = restClient;
   }
 
   public ResponseTokenAndInfoDto register(AuthUserDto userDto) {
@@ -53,21 +52,20 @@ public class AuthService {
     User userForDb = new User();
     userForDb.setPassword(passwordEncoder.encode(userDto.getPassword()));
     userForDb.setUsername(username);
-    User savedUser = userRepo.save(userForDb);
+    User savedUser = userRepo.save(userForDb); // there will be error from DB in the case if 2 users try to register with the same username
     String tokenForGameService = jwtUtil.generateServiceToken(List.of(Role.ROLE_AUTH_SERVICE.name()));
 
       try {
-        webClient.post()
+        restClient.post()
             .uri(gameServiceUrl + "/user_info/" + savedUser.getId())
             .header("Authorization", "Bearer " + tokenForGameService)
-            .bodyValue(Map.of("username", savedUser.getUsername()))
+            .body(Map.of("username", savedUser.getUsername()))
             .retrieve()
-            .toBodilessEntity()
-            .block();
+            .toBodilessEntity();
 
         String token = jwtUtil.generateToken(savedUser.getId(), username, true, List.of(Role.ROLE_USER.name()));
         return new ResponseTokenAndInfoDto(token, savedUser.getId(), username);
-      } catch (WebClientResponseException e) {
+      } catch (RestClientResponseException e) {
         // if game-backend service returned 4xx or 5xx
         userRepo.delete(savedUser);
         log.error("Game Service error: Status {}, Body {}", e.getStatusCode(), e.getResponseBodyAsString());
@@ -76,7 +74,7 @@ public class AuthService {
         // if game-backend service is unreachable(Connection refused)
         userRepo.delete(savedUser);
         log.error("Game-backend-service is unreachable: {}", e.getMessage());
-        throw new RuntimeException("Game service is currently unavailable.");
+        throw new GameServiceUnavailableException("Game service is currently unavailable.");
       }
   }
 

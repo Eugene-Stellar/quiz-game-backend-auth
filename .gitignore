@@ -34,3 +34,7 @@ build/
 
 ### Ignore local configuration ###
 /src/main/resources/application.properties
+
+### Old Configuration ###
+src/main/java/eugenestellar/quiz/service/CustomUserDetailsService.java
+src/main/java/eugenestellar/quiz/model/CustomUserDetails.java

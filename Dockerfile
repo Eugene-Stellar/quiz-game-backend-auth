@@ -1,6 +1,6 @@
 # STAGE 1: Build the app
 # Maven image from DockerHub
-FROM maven:3.9-eclipse-temurin-17-noble AS build
+FROM maven:3.9-eclipse-temurin-21-noble AS build
 
 # Set the working directory
 WORKDIR /app
@@ -16,7 +16,7 @@ RUN mvn clean package -DskipTests
 
 # STAGE 2: Create the final image
 # Use a minimal Java Runtime Environment image for Java 17
-FROM eclipse-temurin:17-jre-focal
+FROM eclipse-temurin:21-jre-focal
 
 WORKDIR /app
 

@@ -21,6 +21,14 @@ public class GlobalExceptionHandler {
 
   private static final Logger log = LoggerFactory.getLogger(GlobalExceptionHandler.class);
 
+  @ExceptionHandler(GameServiceUnavailableException.class)
+  public ResponseEntity<Map<String, String>> handleServiceUnavailableException(GameServiceUnavailableException ex) {
+
+    return ResponseEntity
+        .status(HttpStatus.SERVICE_UNAVAILABLE)
+        .body(Map.of("error", ex.getMessage()));
+  }
+
   @ExceptionHandler(MethodArgumentNotValidException.class)
   public ResponseEntity<Map<String, String>> handleValidationExceptions(MethodArgumentNotValidException ex) {
     List<FieldError> fieldErrors = ex.getFieldErrors();
@@ -84,7 +92,7 @@ public class GlobalExceptionHandler {
   }
 
   @ExceptionHandler(ProfileCreationException.class)
-  public ResponseEntity<Map<String, String>> handleProfileCreationException(ProfileCreationException ex) {
+  public ResponseEntity<Map<String, String>> handleProfileCreationException() {
     return ResponseEntity
         .status(HttpStatus.INTERNAL_SERVER_ERROR)
         .body(Map.of("error", "Profile creation failed."));

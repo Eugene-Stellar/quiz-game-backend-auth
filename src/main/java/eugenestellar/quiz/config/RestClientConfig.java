@@ -2,12 +2,12 @@ package eugenestellar.quiz.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.web.reactive.function.client.WebClient;
+import org.springframework.web.client.RestClient;
 
 @Configuration
-public class WebClientConfig {
+public class RestClientConfig {
   @Bean
-  public WebClient webClient(WebClient.Builder builder) {
+  public RestClient restClient(RestClient.Builder builder) {
     return builder.build();
   }
 }

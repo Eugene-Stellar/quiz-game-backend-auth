@@ -60,6 +60,6 @@ public class CustomSecurityConfig {
 
   @Bean
   public PasswordEncoder passwordEncoder() {
-    return new BCryptPasswordEncoder(11);
+    return new BCryptPasswordEncoder(10); // tradeoff for performance (not 11)
   }
 }
