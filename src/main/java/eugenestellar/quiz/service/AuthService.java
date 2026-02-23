@@ -27,22 +27,20 @@ import java.util.Optional;
 public class AuthService {
 
   private static final Logger log = LoggerFactory.getLogger(AuthService.class);
-
   private final UserRepo userRepo;
   private final PasswordEncoder passwordEncoder;
   private final JwtUtil jwtUtil;
-
   private final WebClient webClient;
 
-  public AuthService(JwtUtil jwtUtil, UserRepo userRepo, PasswordEncoder passwordEncoder, WebClient webClient) {
+  private final String gameServiceUrl;
+
+  public AuthService(JwtUtil jwtUtil, UserRepo userRepo, PasswordEncoder passwordEncoder, WebClient webClient, @Value("${GAME_SERVICE_URL}") String gameServiceUrl) {
     this.jwtUtil = jwtUtil;
     this.userRepo = userRepo;
     this.passwordEncoder = passwordEncoder;
     this.webClient = webClient;
+    this.gameServiceUrl = gameServiceUrl;
   }
-
-  @Value("${GAME_SERVICE_URL}")
-  private String gameServiceUrl;
 
   public ResponseTokenAndInfoDto register(AuthUserDto userDto) {
 
