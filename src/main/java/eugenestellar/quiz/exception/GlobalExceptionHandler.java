@@ -16,7 +16,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
-@ControllerAdvice
+@ControllerAdvice // only for controller layer exceptions
 public class GlobalExceptionHandler {
 
   private static final Logger log = LoggerFactory.getLogger(GlobalExceptionHandler.class);
@@ -34,6 +34,7 @@ public class GlobalExceptionHandler {
         .status(HttpStatus.CONFLICT)
         .body(Map.of("error", ex.getMessage()));
   }
+
   @ExceptionHandler(NotFoundUserOrIncorrectPasswordException.class)
   public ResponseEntity<Map<String, String>> handleNotFoundUser(NotFoundUserOrIncorrectPasswordException ex) {
     return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
