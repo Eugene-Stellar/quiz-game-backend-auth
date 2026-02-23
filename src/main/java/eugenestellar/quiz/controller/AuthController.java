@@ -21,7 +21,7 @@ public class AuthController {
   }
 
   @PostMapping("/register")
-  public ResponseEntity<ResponseTokenAndInfoDto> register(@Valid @RequestBody AuthUserDto userDto) { // @Valid does log WARN
+  public ResponseEntity<ResponseTokenAndInfoDto> register(@Valid @RequestBody AuthUserDto userDto) { // @Valid validates dto fields
 
     ResponseTokenAndInfoDto responseTokenAndInfoDto = authService.register(userDto);
 
