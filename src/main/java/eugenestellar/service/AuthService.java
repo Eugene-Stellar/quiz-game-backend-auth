@@ -3,7 +3,6 @@ package eugenestellar.service;
 import com.auth0.jwt.exceptions.JWTVerificationException;
 import com.auth0.jwt.interfaces.DecodedJWT;
 import eugenestellar.exception.*;
-import eugenestellar.quiz.exception.*;
 import eugenestellar.model.Role;
 import eugenestellar.model.dto.AuthUserDto;
 import eugenestellar.model.dto.ResponseTokenAndInfoDto;
