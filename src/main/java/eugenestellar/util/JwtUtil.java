@@ -55,6 +55,7 @@ public class JwtUtil {
         .require(Algorithm.HMAC256(secret))
         .withIssuer("auth-service")
         .withClaim("type", "access")
+        .acceptLeeway(60)
         .build();
 
     return verifier.verify(token);
@@ -65,6 +66,7 @@ public class JwtUtil {
         .require(Algorithm.HMAC256(secret))
         .withIssuer("auth-service")
         .withClaim("type", "refresh")
+        .acceptLeeway(60)
         .build();
 
     return verifier.verify(token);
