@@ -15,8 +15,8 @@ COPY src ./src
 RUN mvn clean package -DskipTests
 
 # STAGE 2: Create the final image
-# Use a minimal Java Runtime Environment image for Java 17
-FROM eclipse-temurin:21-jre-focal
+# Use a minimal Java Runtime Environment image for Java 21
+FROM eclipse-temurin:21-jre
 
 WORKDIR /app
 
